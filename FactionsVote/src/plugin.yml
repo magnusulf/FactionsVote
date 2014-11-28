@@ -1,0 +1,7 @@
+name: FactionsVote
+version: 0.1
+main: dk.muj.factionsvote.FactionsVote
+description: Adds voting system to factions.
+depend: [Factions]
+authors: [madus]
+
