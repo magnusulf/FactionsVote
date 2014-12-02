@@ -7,12 +7,12 @@ public class Election
 {
 
 	//The name/key of the election
-	private String name;
+	private String name;					//These things might look odd on GitHub, srry
 	public String getName()					{return name;		}
 	public void setName(String name )		{this.name = name;	}
 	
 	//A more in depth description
-	private String desc;
+	private String desc;					//These things might look odd on GitHub, srry
 	public String getDesc()					{return desc;		}
 	public void setDesc(String desc )		{this.desc = desc;	}
 	

@@ -1,10 +1,9 @@
 package dk.muj.factionsvote.cmd;
 
-import com.massivecraft.factions.Rel;
-import com.massivecraft.factions.cmd.req.ReqRoleIsAtLeast;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivecore.util.Txt;
 
+import dk.muj.factionsvote.FactionsVote;
 import dk.muj.factionsvote.Perm;
 import dk.muj.factionsvote.entity.Election;
 import dk.muj.factionsvote.entity.VFaction;
@@ -23,12 +22,16 @@ public class CmdFactionsVoteCreate extends FactionsVoteCommand
 		super.setErrorOnToManyArgs(false);
 		
 		super.addRequirements(ReqHasPerm.get(Perm.CREATE.node));
-		super.addRequirements(ReqRoleIsAtLeast.get(Rel.OFFICER));
 	}
 	
 	@Override
 	public void perform()
 	{
+		if(!msenderFaction.getPermitted(FactionsVote.createElection).contains(msenderFaction.getRelationTo(msender)));
+		{
+			msender.sendMessage(Txt.parse("<b>You cannot create elections in this faction"));
+		}
+		
 		String name = super.arg(0);
 		String desc = super.argConcatFrom(1);
 		if(msenderFaction.isNone()) {msender.sendMessage(Txt.parse("<b>Votes are disabled for default faction")); return;}

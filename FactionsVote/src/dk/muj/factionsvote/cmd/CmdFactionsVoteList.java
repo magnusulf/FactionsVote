@@ -9,6 +9,7 @@ import com.massivecraft.massivecore.cmd.arg.ARInteger;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivecore.util.Txt;
 
+import dk.muj.factionsvote.FactionsVote;
 import dk.muj.factionsvote.Perm;
 import dk.muj.factionsvote.entity.Election;
 import dk.muj.factionsvote.entity.VFaction;
@@ -37,6 +38,11 @@ public class CmdFactionsVoteList extends FactionsVoteCommand
 		VFaction vfaction = VFaction.get(faction);
 		if(faction.isNone()) {msender.sendMessage(Txt.parse("<b>Votes are disabled for default faction")); return;}
 		
+		if(!msenderFaction.getPermitted(FactionsVote.showElections).contains(msenderFaction.getRelationTo(msender)));
+		{
+			msender.sendMessage(Txt.parse("<b>You cannot view this factions elections"));
+		}
+		
 		// Create Messages
 		List<String> msgLines = new ArrayList<String>();
 		
@@ -45,7 +51,7 @@ public class CmdFactionsVoteList extends FactionsVoteCommand
 		
 		final int pageHeight = Txt.PAGEHEIGHT_PLAYER;
 		
-		int pagecount = (electionList.size() / pageHeight) + 1;
+		int pagecount = (listSize / pageHeight) + 1;
 		if(page < 1)
 			page = 1;
 		else if(page > pagecount)

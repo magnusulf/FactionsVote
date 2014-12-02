@@ -11,7 +11,8 @@ public enum Perm
 	CREATE("create"),
 	DELETE("delete"),
 	LIST("list"), 
-	VERSION("version"), 
+	LIST_OTHERS("list.others"),
+	VERSION("version"),
 	
 	// END OF LIST
 	;
