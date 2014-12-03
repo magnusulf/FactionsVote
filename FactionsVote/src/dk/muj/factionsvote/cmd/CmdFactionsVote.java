@@ -11,8 +11,9 @@ import dk.muj.factionsvote.Perm;
 public class CmdFactionsVote extends FactionsVoteCommand
 {
 	CmdFactionsVoteList innerCmdFactionsVoteList = new CmdFactionsVoteList();
-	CmdFactionsVoteCreate innerCmdFactionsVoteCreate = new CmdFactionsVoteCreate();
 	CmdFactionsVoteVote innerCmdFactionsVoteVote = new CmdFactionsVoteVote();
+	CmdFactionsVoteCreate innerCmdFactionsVoteCreate = new CmdFactionsVoteCreate();
+	CmdFactionsVoteDelete innerCmdFactionsVoteDelete = new CmdFactionsVoteDelete();
 	VersionCommand innerVersionCommand = new VersionCommand(FactionsVote.get(), Perm.VERSION.node, "ver", "version");
 	
 	
@@ -25,6 +26,7 @@ public class CmdFactionsVote extends FactionsVoteCommand
 		super.addSubCommand(innerCmdFactionsVoteList);
 		super.addSubCommand(innerCmdFactionsVoteCreate);
 		super.addSubCommand(innerCmdFactionsVoteVote);
+		super.addSubCommand(innerCmdFactionsVoteDelete);
 		super.addSubCommand(innerVersionCommand);
 		
 		super.addRequirements(ReqHasPerm.get(Perm.BASECOMMAND.node));

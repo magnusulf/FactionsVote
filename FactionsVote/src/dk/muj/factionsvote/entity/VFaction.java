@@ -45,4 +45,16 @@ public class VFaction extends Entity<VFaction>
 			return null;
 		}
 		
+		public void RemoveElection(String name)
+		{
+			int remove = -1;
+			for(int i = 0;i < this.elections.size(); i++ )
+				if (this.elections.get(i).getName().equalsIgnoreCase(name))
+					remove = i;
+				else
+					return;
+			this.elections.remove(remove);
+		}
+		
 }
+

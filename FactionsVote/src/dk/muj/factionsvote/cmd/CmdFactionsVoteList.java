@@ -9,7 +9,6 @@ import com.massivecraft.massivecore.cmd.arg.ARInteger;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivecore.util.Txt;
 
-import dk.muj.factionsvote.FactionsVote;
 import dk.muj.factionsvote.Perm;
 import dk.muj.factionsvote.entity.Election;
 import dk.muj.factionsvote.entity.VFaction;
@@ -38,9 +37,10 @@ public class CmdFactionsVoteList extends FactionsVoteCommand
 		VFaction vfaction = VFaction.get(faction);
 		if(faction.isNone()) {msender.sendMessage(Txt.parse("<b>Votes are disabled for default faction")); return;}
 		
-		if(!msenderFaction.getPermitted(FactionsVote.showElections).contains(msenderFaction.getRelationTo(msender)));
+		if(!msenderFaction.getPermitted("listElec").contains(msender.getRelationTo(msenderFaction)) && !msender.isUsingAdminMode())
 		{
 			msender.sendMessage(Txt.parse("<b>You cannot view this factions elections"));
+			return;
 		}
 		
 		// Create Messages
